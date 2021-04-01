@@ -1,0 +1,40 @@
+ID: ui5_master_detail_initial
+_schema-version: '2.1'
+description: ui5_master_detail_initial
+version: 0.0.1
+
+modules:
+ - name: shine_core_db
+   type: hdb
+   path: shine_core_db
+   requires:
+    - name: hdi_shine_core_db
+
+
+ - name: shine_core_xsjs
+   type: nodejs
+   path: shine_core_xsjs
+   provides:
+    - name: shine_core_xsjs_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: shine_core_db
+    - name: hdi_shine_core_db         
+
+
+ - name: web
+   type: html5
+   path: web
+   requires:
+    - name: shine_core_xsjs_api
+      group: destinations
+      properties:
+         name: shine_core_xsjs_be
+         url: ~{url}
+
+resources:
+ - name: hdi_shine_core_db
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container

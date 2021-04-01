@@ -1,0 +1,5 @@
+{
+  "welcomeFile": "index.html",
+  "authenticationMethod": "none",
+  "routes": [{ "source": "/xsodata/purchaseOrders.xsodata/", "destination": "shine_core_xsjs_be" }]
+}
